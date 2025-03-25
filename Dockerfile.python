@@ -1,0 +1,12 @@
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip3 install selenium pandas beautifulsoup4
+
+WORKDIR /app
+
+CMD ["bash"]

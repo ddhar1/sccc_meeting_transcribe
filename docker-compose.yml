@@ -1,0 +1,25 @@
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+      - "7900:7900"  # VNC server port (in case you want to see the browser)
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+    shm_size: 2g  # Important for Chrome stability
+
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+    depends_on:
+      - chrome
+    environment:
+      - SELENIUM_REMOTE_URL=http://chrome:4444/wd/hub
+    stdin_open: true  # Keep STDIN open
+    tty: true         # Allocate a pseudo-TTY
