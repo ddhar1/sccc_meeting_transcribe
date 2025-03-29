@@ -1,0 +1,11 @@
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data2:/app/data
+    command: python3 /app/data/script.py
+    #stdin_open: true  # Keep STDIN open
+    #tty: true         # Allocate a pseudo-TTY
+
