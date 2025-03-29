@@ -5,7 +5,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-RUN pip3 install selenium pandas beautifulsoup4
+COPY requirements.txt /app/requirements.txt
+WORKDIR /app
+RUN pip3 install -r requirements.txt
 
 WORKDIR /app
 
