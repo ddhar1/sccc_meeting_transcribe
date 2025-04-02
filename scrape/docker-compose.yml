@@ -1,5 +1,5 @@
 services:
-  chrome:
+  selenium-chrome:
     image: selenium/standalone-chrome:latest
     ports:
       - "4444:4444"
@@ -10,7 +10,7 @@ services:
         hard: 32768
     shm_size: 2g  # Important for Chrome stability
 
-  python:
+  python-scraper:
     build:
       context: .
       dockerfile: Dockerfile.python
